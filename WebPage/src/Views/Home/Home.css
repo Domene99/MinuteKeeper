@@ -1,0 +1,174 @@
+.MainScreen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.Logo {
+  position: relative;
+  height: 100%;
+  left: 2%;
+}
+.DashboardRoute {
+  position: relative;
+  height: 60px;
+  top: -20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none !important;
+  color: grey !important;
+  text-align: center;
+  left: 8%;
+}
+.DashboardRouteActive {
+  position: relative;
+  height: 60px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none !important;
+  top: -20px;
+  color: #2eafd9 !important;
+  text-align: center;
+  border-bottom: 2px solid #2eafd9;
+  left: 8%;
+}
+.AddVendorRoute {
+  position: relative;
+  height: 100%;
+  top: -20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none !important;
+  color: grey !important;
+  text-align: center;
+  left: 10%;
+}
+.AddVendorRouteActive {
+  position: relative;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none !important;
+  top: -20px;
+  border-bottom: 2px solid #2eafd9;
+  color: #2eafd9 !important;
+  text-align: center;
+  left: 10%;
+}
+.Dashboard {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  background-color: #f1f1f1;
+}
+.Container {
+  position: relative;
+  top: 30px;
+  width: 95%;
+  overflow: hidden;
+  left: 2.5%;
+}
+.ContainerText {
+  flex: 1 1 auto;
+  text-align: center;
+  top: 10%;
+  height: 80%;
+  position: relative;
+  color: grey;
+}
+.Text {
+  top: 20%;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+.TextNumber {
+  top: 25%;
+  position: relative;
+  color: black !important;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+}
+.TextPeriod {
+  top: calc(1vw + 1vh + 0.5vmin);
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(0.8vw);
+}
+.ContainerText + .ContainerText {
+  border-left: solid 1.5px lightgrey;
+}
+.Justify {
+  height: 100%;
+  top: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.VendorsContainer {
+  position: relative;
+  height: 80vh;
+  overflow: auto;
+}
+.VendorsList {
+  list-style-type: none;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+.VendorItem {
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  vertical-align: bottom;
+  display: inline-block;
+  margin-right: 50px;
+  cursor: pointer;
+  vertical-align: top;
+}
+.VendorImage {
+  position: relative;
+  height: 40px;
+  top: 20px;
+}
+.ContainerVendor {
+  text-align: center;
+}
+.VendorItem:hover {
+  background-color: lightgrey;
+}
+.VendorName {
+  position: relative;
+  top: 20px;
+  font-family: "Roboto", sans-serif;
+}
+.VendorSales {
+  position: relative;
+  top: 25px;
+  font-weight: 800;
+  font-size: 30px;
+
+  font-family: "Roboto", sans-serif;
+}
+.Button {
+  background-color: #2eafd9 !important;
+}
+.notesName {
+  text-align: left !important;
+  font-size: calc(0.8vw + 0.8vh + 0.4vmin);
+  margin: 20px;
+  font-weight: 700;
+  border-bottom: 2px solid #2eafd9;
+}
+.notesDescription {
+  text-align: left !important;
+  font-size: calc(0.5vw + 0.5vh + 0.25vmin);
+  margin: 20px;
+}
