@@ -1,3 +1,10 @@
+from __future__ import print_function
+import datetime
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 import time
 from datetime import datetime
 import dateparser
@@ -5,6 +12,56 @@ import boto3
 import json
 import time
 import pandas as pd
+import random
+
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+
+def gcal(text, event_date):
+	"""Shows basic usage of the Google Calendar API.
+	Prints the start and name of the next 10 events on the user's calendar.
+	"""
+	creds = None
+	# The file token.pickle stores the user's access and refresh tokens, and is
+	# created automatically when the authorization flow completes for the first
+	# time.
+	if os.path.exists('token.pickle'):
+		with open('token.pickle', 'rb') as token:
+			creds = pickle.load(token)
+	# If there are no (valid) credentials available, let the user log in.
+	if not creds or not creds.valid:
+		if creds and creds.expired and creds.refresh_token:
+			creds.refresh(Request())
+		else:
+			flow = InstalledAppFlow.from_client_secrets_file(
+				'credentials.json', SCOPES)
+			creds = flow.run_local_server(port=0)
+		# Save the credentials for the next run
+		with open('token.pickle', 'wb') as token:
+			pickle.dump(creds, token)
+   
+	service = build('calendar', 'v3', credentials=creds)
+	date_to_string = str(event_date.year) + '-' + str(event_date.month) + '-' + str(event_date.day) + 'T' + str(event_date.hour) + ':00:00-05:00'
+	event = {
+		'summary': 'Automatic deadline found by minute keeper',
+		'description': text,
+		'start': {
+			'dateTime': date_to_string,
+			'timeZone': 'America/Monterrey',
+		},
+		'end': {
+			'dateTime': date_to_string,
+			'timeZone': 'America/Monterrey',
+		},
+		'reminders': {
+			'useDefault': False,
+			'overrides': [
+				{'method': 'popup', 'minutes': 10},
+			],
+		},
+	}
+
+	event = service.events().insert(calendarId='primary', body=event).execute()
+	return event.get('htmlLink')
 
 def dates(text, chunk, lan):
 	entities = comprehend.detect_entities(Text = text, LanguageCode = lan)['Entities']
@@ -17,9 +74,13 @@ def dates(text, chunk, lan):
 			j = entity['EndOffset']
 			start = text[:i].rfind('.')
 			end = text[j:].find('.')
-			j = j if end == -1 else j + end
-			i = i if end == -1 else start
-			data['due' if today <= ent_date else 'past'].append({'full_sentence': text[i:j], 'date_keyword': ent_text, 'year': ent_date.year, 'month': ent_date.month, 'day': ent_date.day, 'hour': ent_date.hour, 'chunk': chunk})
+			j = j if end == -1 else j + end + 1
+			i = i if end == -1 else start + 1
+			if today <= ent_date:
+				link = gcal(text[i:j], ent_date)
+				data['due'].append({'full_sentence': text[i:j], 'date_keyword': ent_text, 'year': ent_date.year, 'month': ent_date.month, 'day': ent_date.day, 'hour': ent_date.hour, 'chunk': chunk, 'cal_link': link})
+			else:
+				data['past'].append({'full_sentence': text[i:j], 'date_keyword': ent_text, 'year': ent_date.year, 'month': ent_date.month, 'day': ent_date.day, 'hour': ent_date.hour, 'chunk': chunk})
 
 def keyPhrases(text, chunk, lan):
 	key_phrases = comprehend.detect_key_phrases(Text = text, LanguageCode = lan)['KeyPhrases']
@@ -76,7 +137,19 @@ freq_topic = pd.Series(topics).value_counts().idxmax()
 
 data['info'].append({'language': lan, 'general_topic': freq_topic, 'morale': freq_sent})
 
-print (json.dumps(data, sort_keys = True, indent = 4))
+dynamodb = boto3.resource('dynamodb')
 
-with open('data.txt', 'w') as outfile:
-    json.dump(data, outfile)
+table = dynamodb.Table('Todo-itr7mdmuhzehfe3rmb2eqr2ebq-hackaws')
+
+id = random.randint(9999,999999999)
+name = "meeting of: " + today.strftime('%B') + " " + str(today.day) + " " + str(today.year)
+
+table.put_item(
+	Item = {
+		"id":str(id),
+		"name":name,
+		"description":"automatic minute from " + name,
+		"email":"jabdo89@gmail.com",
+		"data":json.dumps(data)
+	}
+)
