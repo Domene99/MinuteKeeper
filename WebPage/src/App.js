@@ -18,15 +18,15 @@ query{
 }`;
 
 class App extends Component {
-	state = { Notes: [] };
-	async componentDidMount() {
-		const data = await API.graphql(graphqlOperation(query));
-		this.setState({ Notes: data.data.listTodos.items });
-	}
-	render() {
-		const Notes = this.state;
-		return <Home Notes={Notes} />;
-	}
+  state = { Notes: [] };
+  async componentDidMount() {
+    const data = await API.graphql(graphqlOperation(query));
+    this.setState({ Notes: data.data.listTodos.items });
+  }
+  render() {
+    const Notes = this.state;
+    return <Home Notes={Notes} />;
+  }
 }
 
 export default withAuthenticator(App);
