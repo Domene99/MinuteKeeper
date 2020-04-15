@@ -47,8 +47,8 @@ class Orders extends Component {
 			.getMp3()
 			.then(([buffer, blob]) => {
 				const blobURL = URL.createObjectURL(blob);
-				window.open(blobURL, "_blank");
 				this.setState({ blobURL, isRecording: false });
+				window.open(this.state.blobURL, "_blank");
 			})
 			.catch((e) => console.log(e));
 	};
