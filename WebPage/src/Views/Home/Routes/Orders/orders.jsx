@@ -2,19 +2,23 @@ import React, { Component } from "react";
 import "../../Home.css";
 import Button from "@material-ui/core/Button";
 import MicRecorder from "mic-recorder-to-mp3";
-import AWS from "aws-sdk";
+import TranscribeService from "aws-sdk/clients/transcribeservice";
 // import { PythonShell } from "python-shell";
+
+let AWS = require("aws-sdk");
+AWS.config.update({
+	region: "us-east-2",
+});
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
-const transcribeAudio = async () => {
-	var transcribeservice = new AWS.TranscribeService();
+const transcribeAudio = (blobURL) => {
+	var transcribeservice = new TranscribeService();
 	transcribeservice.startTranscriptionJob(
 		{
 			LanguageCode: "es-ES",
-			Media: this.state.blobURL,
+			Media: { MediaFileUri: blobURL },
 			TranscriptionJobName: "helloTranscription",
-			mediaFormat: "mp3",
 		},
 		(err, data) => {
 			if (err) console.log(err, err.stack);
@@ -74,7 +78,7 @@ class Orders extends Component {
 				const blobURL = URL.createObjectURL(blob);
 				this.setState({ blobURL, isRecording: false });
 				window.open(this.state.blobURL, "_blank");
-				transcribeAudio();
+				transcribeAudio(blobURL);
 			})
 			.catch((e) => console.log(e));
 	};
