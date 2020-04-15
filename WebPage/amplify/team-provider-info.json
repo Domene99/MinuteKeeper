@@ -1,20 +1,20 @@
 {
-    "hackaws": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-hackaws-hackaws-120937-authRole",
-            "UnauthRoleArn": "arn:aws:iam::741124239363:role/amplify-hackaws-hackaws-120937-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::741124239363:role/amplify-hackaws-hackaws-120937-authRole",
-            "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-hackaws-hackaws-120937-deployment",
-            "UnauthRoleName": "amplify-hackaws-hackaws-120937-unauthRole",
-            "StackName": "amplify-hackaws-hackaws-120937",
-            "StackId": "arn:aws:cloudformation:us-east-2:741124239363:stack/amplify-hackaws-hackaws-120937/b9f6c430-7e72-11ea-b877-0a7adbd72fc8",
-            "AmplifyAppId": "dp6fjku21dwon"
-        },
-        "categories": {
-            "auth": {
-                "hackaws0e65e840": {}
-            }
-        }
+  "hackaws": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hackaws-hackaws-120937-authRole",
+      "UnauthRoleArn": "arn:aws:iam::741124239363:role/amplify-hackaws-hackaws-120937-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::741124239363:role/amplify-hackaws-hackaws-120937-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-hackaws-hackaws-120937-deployment",
+      "UnauthRoleName": "amplify-hackaws-hackaws-120937-unauthRole",
+      "StackName": "amplify-hackaws-hackaws-120937",
+      "StackId": "arn:aws:cloudformation:us-east-2:741124239363:stack/amplify-hackaws-hackaws-120937/b9f6c430-7e72-11ea-b877-0a7adbd72fc8",
+      "AmplifyAppId": "dp6fjku21dwon"
+    },
+    "categories": {
+      "auth": {
+        "hackaws0e65e840": {}
+      }
     }
+  }
 }
