@@ -8,7 +8,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import Dashboard from "./Routes/Dashboard/dashboard";
-import logo from "../../img/jude1.png";
+import logo from "../../img/logo.png";
 import Orders from "./Routes/Orders/orders";
 import NotesDetail from "./Routes/Dashboard/noteDetaile";
 
@@ -64,7 +64,7 @@ class NavBar extends Component {
                 className="AddVendorRoute"
                 activeClassName="AddVendorRouteActive"
               >
-                New Recording
+                Record
               </NavLink>
               <Switch>
                 <Route path="/home">

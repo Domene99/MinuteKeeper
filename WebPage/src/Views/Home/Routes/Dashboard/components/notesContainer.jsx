@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +72,12 @@ export default function SimplePaper({ data }) {
     <div className={classes.root}>
       <Paper elevation={3}>
         <div className="MainNoteContainer">
+          <div className="back-btn">
+          <Button href="/home">
+							Go back
+						</Button>
+          </div>
+
           <div className="title">Main Subject</div>
           {info[0]}
           <div className="title">Overview of Meeting</div>

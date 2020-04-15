@@ -88,9 +88,12 @@ class Orders extends Component {
 			<div className="Dashboard">
 				<div className="Container">
 					<div>
-						<Button onClick={this.start} disabled={this.state.isRecording}>
-							Record
-						</Button>
+						<div className="record">
+							<Button onClick={this.start} disabled={this.state.isRecording}>
+								Record
+							</Button>
+						</div>
+
 						<Button onClick={this.stop} disabled={!this.state.isRecording}>
 							Stop
 						</Button>

@@ -25,9 +25,11 @@ class Dashboard extends Component {
                 {Notes.Notes &&
                   Notes.Notes.map((note) => {
                     return (
+                      <div className="nota">
                       <Link to={"/note/" + note.id} className="VendorItem">
                         <Container data={note} />
                       </Link>
+                      </div>
                     );
                   })}
               </ul>
