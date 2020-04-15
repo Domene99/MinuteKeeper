@@ -8,6 +8,20 @@
   height: 100%;
   left: 2%;
 }
+.record{
+  background-color: #ff8989;
+  width: fit-content;
+    color: white;
+    border-radius: 50px;
+    display: inline-block;
+}
+.back-btn{
+  background-color: #a2dcef;
+  width: fit-content;
+    color: white;
+    border-radius: 50px;
+    display: inline-block;
+}
 .DashboardRoute {
   position: relative;
   height: 60px;
@@ -125,12 +139,14 @@
 .VendorItem {
   text-decoration: none !important;
   text-align: center;
-  width: 300px;
-  height: 300px;
   vertical-align: bottom;
   margin-right: 50px;
   cursor: pointer;
   vertical-align: top;
+}
+.nota{
+  width: 300px !important;
+  display: inline-block;
 }
 .VendorImage {
   position: relative;
@@ -185,4 +201,8 @@
 }
 .due {
   padding-top: 10px;
+}
+
+.makeStyles-root-1 > *{
+  width: auto;
 }
