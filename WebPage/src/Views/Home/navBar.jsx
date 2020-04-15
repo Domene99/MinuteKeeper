@@ -64,7 +64,7 @@ class NavBar extends Component {
                 className="AddVendorRoute"
                 activeClassName="AddVendorRouteActive"
               >
-                Profile
+                New Recording
               </NavLink>
               <Switch>
                 <Route path="/home">

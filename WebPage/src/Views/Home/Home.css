@@ -176,3 +176,13 @@
   font-size: calc(0.5vw + 0.5vh + 0.25vmin);
   margin: 20px;
 }
+.MainNoteContainer {
+  margin: 50px;
+}
+.title {
+  font-weight: 700;
+  padding-top: 40px;
+}
+.due {
+  padding-top: 10px;
+}

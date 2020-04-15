@@ -3,6 +3,7 @@ import "../../Home.css";
 import Button from "@material-ui/core/Button";
 import MicRecorder from "mic-recorder-to-mp3";
 import AWS from "aws-sdk";
+// import { PythonShell } from "python-shell";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -59,6 +60,12 @@ class Orders extends Component {
 				.catch((e) => console.error(e));
 		}
 	};
+	//   python = (blob) => {
+	//     PythonShell.run("Python.py", null, function (err) {
+	//       if (err) throw err;
+	//       console.log("finished");
+	//     });
+	//   };
 
 	stop = () => {
 		Mp3Recorder.stop()

@@ -12,6 +12,7 @@
     "aws-amplify-react": "^4.1.6",
     "aws-sdk": "^2.656.0",
     "mic-recorder-to-mp3": "^2.2.1",
+    "python-shell": "^1.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
