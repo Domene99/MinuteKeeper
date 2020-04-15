@@ -16,56 +16,84 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimplePaper({ data }) {
   const classes = useStyles();
-  const json = JSON.parse(data.data);
+  const json = JSON.parse(data[0].data);
   let full_text = "";
   let full_size = 0;
   let due = [];
   let past = [];
-  let info = [json.info[0].general_topic, json.info[0].language, json.info[0].morale];
+  let info = [
+    json.info[0].general_topic,
+    json.info[0].language,
+    json.info[0].morale,
+  ];
   let key_topics = [];
 
-  for (const el of json.chunks) {
+  for (let el of json.chunks) {
     full_text += el.text;
     full_size += parseInt(el.size);
   }
 
-  for (const el of json.due) {
-    let due_info = new Array(4);
-    let date_string = '' + el.year + '-' + el.month + '-' + el.day + 'T' + el.hour + ':00:00-05:00'; // 2020-06-15T12:00:00-05:00
-    // let date = new Date(date_string);
-    due_info[0] = el.full_sentence;
-    due_info[1] = el.date_keyword;
-    due_info[2] = date_string;
-    due_info[3] = el.link; // google drive calendar link
-    due.push(due_info);
+  for (let el of json.due) {
+    let date_string =
+      "" +
+      el.year +
+      "-" +
+      el.month +
+      "-" +
+      el.day +
+      "Time: " +
+      el.hour +
+      ":00:00-05:00";
+    due.push([el.full_sentence, el.date_keyword, date_string, el.cal_link]);
   }
 
-  for (const el of json.past) {
-    let past_info = new Array(3);
-    let date_string = '' + el.year + '-' + el.month + '-' +
- el.day + 'T' + el.hour + ':00:00-05:00';
-    // let date = new Date(date_string);
-    due_info[0] = el.full_sentence;
-    due_info[1] = el.date_keyword;
-    due_info[2] = date_string;
-    due.push(due_info);
+  for (let el of json.past) {
+    let date_string =
+      "" +
+      el.year +
+      "-" +
+      el.month +
+      "-" +
+      el.day +
+      "Time: " +
+      el.hour +
+      ":00:00-05:00";
+    past.push([el.full_sentence, el.date_keyword, date_string]);
   }
 
-  for (const el of json.key_topics) {
+  for (let el of json.key_topics) {
     key_topics.push(el.most_repeated_key_word);
   }
 
-  console.log(due_info);
-  console.log(past_info);
-  console.log(key_topics);
-  console.log(info);
-  console.log(full_size);
-
+  console.log(due);
+  console.log(past);
   return (
     <div className={classes.root}>
       <Paper elevation={3}>
-        {/* <div className="notesName">{data.name}</div>
-        <div className="notesDescription">{data.description}</div> */}
+        <div className="MainNoteContainer">
+          <div className="title">Main Subject</div>
+          {info[0]}
+          <div className="title">Overview of Meeting</div>
+          Language: {info[1]} Morale: {info[2]}
+          <div className="title">Due Activities </div>
+          {due &&
+            due.map((note) => {
+              console.log(note);
+              return (
+                <div className="due">
+                  <div>{note[0]}</div>
+                  <div>{note[1]}</div>
+                  <div>{note[2]}</div>
+                  <a href={note[3]}>{note[3]}</a>
+                </div>
+              );
+            })}
+          <div className="title">Past Activities</div>
+          {past &&
+            past.map((note) => {
+              return <div>{note}</div>;
+            })}
+        </div>
       </Paper>
     </div>
   );

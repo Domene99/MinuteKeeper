@@ -17,7 +17,7 @@ query{
       params.id +
       `"}}){
     items {
-      id name description email
+      id name description email data
     }
   }
 }`;
@@ -27,11 +27,15 @@ query{
   }
   render() {
     console.log(this.state);
-    return (
-      <div className="Dashboard">
-        <NoteConatiner />
-      </div>
-    );
+    if (this.state.Notes.length !== 0) {
+      console.log(this.state.Notes);
+      return (
+        <div className="Dashboard">
+          <NoteConatiner data={this.state.Notes} />
+        </div>
+      );
+    }
+    return null;
   }
 }
 
