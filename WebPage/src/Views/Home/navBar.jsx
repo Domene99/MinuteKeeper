@@ -10,6 +10,7 @@ import {
 import Dashboard from "./Routes/Dashboard/dashboard";
 import logo from "../../img/jude1.png";
 import Orders from "./Routes/Orders/orders";
+import NotesDetail from "./Routes/Dashboard/noteDetaile";
 
 class NavBar extends Component {
   constructor() {
@@ -72,9 +73,7 @@ class NavBar extends Component {
                 <Route path="/profile">
                   <Orders />
                 </Route>
-                <Route path="/note/:id">
-                  <div />
-                </Route>
+                <Route path="/note/:id" component={NotesDetail}></Route>
                 <Redirect to="/home" />
               </Switch>
               <div classname={NavBarHandle} />

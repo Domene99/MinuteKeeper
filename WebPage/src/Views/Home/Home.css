@@ -119,16 +119,15 @@
 }
 .VendorsList {
   list-style-type: none;
-  white-space: nowrap;
   margin: 0;
   padding: 0;
 }
 .VendorItem {
+  text-decoration: none !important;
   text-align: center;
   width: 300px;
   height: 300px;
   vertical-align: bottom;
-  display: inline-block;
   margin-right: 50px;
   cursor: pointer;
   vertical-align: top;
@@ -162,13 +161,18 @@
 }
 .notesName {
   text-align: left !important;
+  text-decoration: none !important;
+  overflow-y: auto;
+  width: 80%;
   font-size: calc(0.8vw + 0.8vh + 0.4vmin);
   margin: 20px;
   font-weight: 700;
   border-bottom: 2px solid #2eafd9;
 }
 .notesDescription {
+  text-decoration: none !important;
   text-align: left !important;
+  width: 80%;
   font-size: calc(0.5vw + 0.5vh + 0.25vmin);
   margin: 20px;
 }
